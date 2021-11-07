@@ -23,6 +23,10 @@ export const NewsProvider: React.FC = ({ children }) => {
         }
     };
 
+    const fetchOneNews = async (id: string) : Promise<INews | undefined>  => {
+        return undefined; 
+    }; 
+
     useEffect(() => {
         fetchNews();
     }, []);
@@ -36,6 +40,7 @@ export const NewsProvider: React.FC = ({ children }) => {
                 setLoading,
                 error,
                 setError,
+                getOneNews: fetchOneNews
             }}
         >
             {children}

@@ -21,6 +21,8 @@ const Input = forwardRef<HTMLInputElement, inputProps>((props, ref) => {
     return (<div className={classes.base} style={props.style}>
         <input
             {...propsToPass}
+            list={'browsers'}
+            placeholder={props.placeholder}
             className={`${classes.input} ${!isEmpty ? classes.notEmpty : ""} `}
             onChange={(e) => {
                 const isValid = e.currentTarget.checkValidity();
@@ -34,6 +36,13 @@ const Input = forwardRef<HTMLInputElement, inputProps>((props, ref) => {
                 {props.label}
             </span>
         </label>
+        <datalist id="browsers">
+            <option value="Amsterdam" />
+            <option value="Cali" />
+            <option value="Bogota" />
+            <option value="New York" />
+            <option value="Washingtom" />
+        </datalist>
     </div>
     );
 

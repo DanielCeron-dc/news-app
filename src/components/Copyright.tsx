@@ -2,9 +2,9 @@ import { Link, Typography } from '@mui/material';
 
 export default function Copyright() {
     return (
-        <Typography variant="body2" color="textSecondary" align="center">
+        <Typography variant="body2" color="textSecondary" align="center" style={{ color: 'var(--text)' }}>
             {'Copyright © '}
-            <Link color="inherit" href="https://danielceron-dc.me/">
+            <Link color="inherit" href="https://danielceron-dc.me/" >
                 Daniel Cerón
             </Link>{' '}
             {new Date().getFullYear()}

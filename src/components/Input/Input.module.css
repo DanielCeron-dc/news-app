@@ -8,40 +8,36 @@
 .span {
     position: absolute;
     bottom: 5px;
-    left: 10px; 
+    left: 10px;
     transition: all 0.3s ease;
-    color: grey; 
+    color: grey;
     font-size: 1.2em;
 }
 
-
 .input {
     width: 100%;
-    height: 50px; 
+    height: 50px;
     display: flex;
     border: none;
     outline: none;
     box-sizing: border-box;
     padding: 10px 10px 0px 10px;
     font-size: 16px;
-    background-color: var(--color1);
-    color: black;
+    background-color: var(--color2);
+    color: var(--text);
 }
-
 
 .input.black {
     background-color: #1a1a1a;
-
 }
 
-
-.input:focus + .label .span, .input.notEmpty + .label .span {
+.input:focus+.label .span, .input.notEmpty+.label .span {
     transform: translateY(-150%);
     font-size: smaller;
-    color: var(--color2); 
+    color: #599876;
 }
 
-.input:focus + .label.invalid .span, .input.notEmpty + .label.invalid .span {
+.input:focus+.label.invalid .span, .input.notEmpty+.label.invalid .span {
     color: red;
 }
 
@@ -51,7 +47,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-bottom: 1px solid var(--color2); ;
+    border-bottom: 1px solid #599876;
+    ;
     pointer-events: none;
     font-size: 16px;
 }
@@ -63,21 +60,20 @@
     left: 0;
     width: 100%;
     height: 100%;
-    border-bottom: 3px solid var(--color2); ;
+    border-bottom: 3px solid #599876;
+    ;
     transform: translateX(-100%);
-    transition:  transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .label.invalid::after {
-    border-bottom: 3px solid var(--danger) ;
+    border-bottom: 3px solid var(--danger);
 }
 
 .label.invlid .span {
-    color:  var(--danger);
+    color: var(--danger);
 }
 
-.input:focus + .label::after, .input.notEmpty + .label::after {
+.input:focus+.label::after, .input.notEmpty+.label::after {
     transform: translateX(0%);
 }
-
-

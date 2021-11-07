@@ -1,30 +1,23 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* this is the css file for the variables.css file */
-:root {
-    --color1: white; 
-    --color1-dark: rgb(177, 177, 177);
-    --color2: #009e89; 
-    --color2-dark: rgb(1, 134, 117);
-    --color3: rgb(116, 53, 53);
-    --color3-dark: #29446e;
-    --color4: #FF6F61;
-    --color4-dark: #cc564b;
-    --color5: #cc8800;
-    --color5-dark: #af7500;
-    --danger: #ff0000;
-    --danger-dark: #960000;
-    --warning: #ff9f00;
-    --warning-dark: #b46f00;
-}
 
+:root {
+  --color1: white;
+  --color1-dark: rgb(177, 177, 177);
+  --color2: white;
+  --color2-dark: rgb(1, 134, 117);
+  --text: #3a3a3a;
+  --danger: #ff0000;
+  --danger-dark: #960000;
+  --warning: #ff9f00;
+  --warning-dark: #b46f00;
+}
 
 img {
   max-width: 100%;
@@ -32,6 +25,5 @@ img {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

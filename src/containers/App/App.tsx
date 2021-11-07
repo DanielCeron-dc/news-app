@@ -14,22 +14,28 @@ function App() {
   
   return <div className="App">
     <Routes>
-      <Route path={"/:newsPage"} element={
+      <Route path={"/:city/:newsId"} element={
         !isMobile ?
+          <>
+            <Header />
+            <NewsList />
+            <NewsPage />
+            <Copyright />
+          </> : <>
+            <NewsPage />
+          </>
+      } />
+      <Route path={"/:city/"} element={
         <>
           <Header />
           <NewsList />
-          <NewsPage />
           <Copyright />
-        </>:<>
-          <NewsPage />
         </>
       }/>
       <Route path={"/"} element={
         <>
-        <Header />
-        <NewsList />
-        <Copyright />
+          <Header />
+          <Copyright />
         </>
       } />
     </Routes>
