@@ -1,14 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+
 import './index.css';
 import App from 'containers/App/App';
-import {BrowserRouter as Router} from 'react-router-dom';
+import {CityInfoProvider } from 'store/news/CityInfoProvider';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <CityInfoProvider>
+        <Router>
+          <App/>
+        </Router>
+    </CityInfoProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

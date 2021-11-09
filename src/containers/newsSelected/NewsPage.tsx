@@ -1,34 +1,37 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Card, CardContent, Typography } from '@mui/material';
-import useWindow from 'hooks/useWindow';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Card, CardContent, Typography } from '@mui/material';
+
+import useWindow from 'hooks/useWindow';
 import classes from './NewsPage.module.css'; 
-import useNews from 'store/news/useNews';
-import INews from 'store/news/Inews';
+import {INews} from 'store/news/ICityInfo';
 import Loader from 'components/Loader/Loader';
+import useCityInfo from 'store/news/useCityInfo';
 
 const NewsId:React.FC = () => {
     
-    const [news, setNews] = useState<INews |undefined>(undefined); 
-    const { getOneNews } = useNews(); 
-
-    const { isMobile } = useWindow();
+    const [newSelected, setNewSelected] = useState<INews|undefined>(undefined); 
     const { newsId } = useParams();
     const navigate = useNavigate();
+    
+    const {cityInfo } = useCityInfo(); 
+    const { isMobile } = useWindow();
+    
 
-    const getNews = useCallback(
-        async () => {
-            if (!newsId) return;
-            const news = await getOneNews(newsId);
-            setNews(news);
+    const getNewSelected = useCallback(
+        () => {
+            const news = cityInfo.news;
+            const newSelected = news.find(
+                (newsItem: INews) => newsItem.title === newsId
+            );
+            setNewSelected(newSelected);
         },
-        [],
+        [newsId],
     ); 
 
     useEffect(() => {
-        getNews(); 
-    }, [getNews]);
-    
+        getNewSelected(); 
+    }, [getNewSelected]);
 
     useEffect(() => {
         if (!newsId) return
@@ -45,7 +48,6 @@ const NewsId:React.FC = () => {
         }
     }, [newsId, isMobile]);
 
-
     return <Card className={classes.base} style ={{backgroundColor:'var(--color2)', color: 'var(--text)'}}>
         {isMobile && <Button
             onClick={() => navigate('/')}
@@ -56,13 +58,13 @@ const NewsId:React.FC = () => {
             </Button>
         }
         <CardContent>
-           {news ? <>
+            {newSelected ? <>
                 <Typography variant = "h3">
                         {newsId}
                 </Typography>
-                <img src={news.image} alt={news.title} style={{height:'20rem', width: '100%', backgroundColor: "mediumseagreen"}}/>
+                <img src={newSelected.urlToImage} alt={newSelected.title} style={{height:'20rem', width: '100%', backgroundColor: "mediumseagreen"}}/>
                 <Typography variant="subtitle1">
-                    {news.description}
+                    {newSelected.description}
                 </Typography>
             </> : <Loader />
             }

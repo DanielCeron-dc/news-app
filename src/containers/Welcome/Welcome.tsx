@@ -14,7 +14,6 @@ const Welcome:React.FC = () => {
         <Typography variant="h2" className={classes.title}>
             Welcome
         </Typography>
-        <img src={worldImg} alt="welcome" className={classes.image}/>
         <Typography variant="body1" className={classes.subtitle}>
             Find out the weather and news in your city
         </Typography>

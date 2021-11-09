@@ -8,21 +8,20 @@ export interface inputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     ref: React.ForwardedRef<HTMLInputElement>
 }
 
-
 const Input = forwardRef<HTMLInputElement, inputProps>((props, ref) => {
     const [valid, setValid] = useState(true); //!this is just for styling purposes
     const [isEmpty, setIsEmpty] = useState(true);  //!this is just for styling purposes
-
     const propsToPass = { ...props, ref };
+    
     delete propsToPass.label;
     delete propsToPass.onChange;
     delete propsToPass.className;
 
-    return (<div className={classes.base} style={props.style}>
+    return <div className={classes.base} style={props.style}>
         <input
             {...propsToPass}
             list={'browsers'}
-            placeholder={props.placeholder}
+            placeholder={""}
             className={`${classes.input} ${!isEmpty ? classes.notEmpty : ""} `}
             onChange={(e) => {
                 const isValid = e.currentTarget.checkValidity();
@@ -36,15 +35,7 @@ const Input = forwardRef<HTMLInputElement, inputProps>((props, ref) => {
                 {props.label}
             </span>
         </label>
-        <datalist id="browsers">
-            <option value="Amsterdam" />
-            <option value="Cali" />
-            <option value="Bogota" />
-            <option value="New York" />
-            <option value="Washingtom" />
-        </datalist>
-    </div>
-    );
+    </div>;
 
 });
 

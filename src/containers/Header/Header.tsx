@@ -8,13 +8,19 @@ import Map from 'components/Map';
 import DarkModeSwitch from 'components/DarkModeSwitch';
 import Welcome from 'containers/Welcome/Welcome';
 import SearchCity from 'components/SearchCity';
+import useCityInfo from 'store/news/useCityInfo';
+
 
 const Header: React.FC = () => {
 
     const [isSmall, setIsSmall] = useState(false);
-    const { city } = useParams();
     const navigate = useNavigate();
+    const { city } = useParams();
+    const {cityInfo } = useCityInfo(); 
     
+    const wheather = cityInfo.currentWheather;
+
+
     const handleOnScroll = () => {
         if (window.scrollY > 500) {
             setIsSmall(true);
@@ -47,7 +53,7 @@ const Header: React.FC = () => {
                         {city ? city : 'Москва'}
                     </Typography>
                     <Typography variant="h4" className={classes.wheather}>
-                        <CloudSharp /> 8° Sunny
+                        <CloudSharp /> {wheather.temperature} {wheather.wheatherDescription[0]}
                     </Typography>
                     <DarkModeSwitch />
                     <div className ={classes.spacer}></div>

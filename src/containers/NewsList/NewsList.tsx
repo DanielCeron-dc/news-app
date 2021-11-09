@@ -5,8 +5,9 @@ import { IconButton } from '@mui/material';
 import NewsCard from 'components/NewsCard/NewsCard';
 import useWindow from 'hooks/useWindow';
 import classes from './NewsList.module.css'; 
-import useNews from 'store/news/useNews';
+
 import Loader from 'components/Loader/Loader';
+import useCityInfo from 'store/news/useCityInfo';
 
 let interval = setInterval(() => {}, 0);
 
@@ -14,7 +15,9 @@ const NewsList: React.FC = () => {
 
     const divRef = useRef<HTMLDivElement>(null);
     const { isMobile } = useWindow();
-    const { news, loading } = useNews(); 
+    const { cityInfo, loading } = useCityInfo();
+    
+    const news = cityInfo?.news;
 
     const autoScroll = useCallback(
         () => {
@@ -48,7 +51,7 @@ const NewsList: React.FC = () => {
             <ArrowLeftSharp fill="var(--text)" />
         </IconButton>}
         <div className={classes.list} ref={divRef}>
-            {news.map((item ) => <NewsCard
+            {news && news.map((item ) => <NewsCard
                 news = {item}
             />)}
         </div>
@@ -58,7 +61,7 @@ const NewsList: React.FC = () => {
     </>
 
     return <div className={classes.newsList} >
-        {false ? <Loader /> : listJSX}
+        {loading ? <Loader /> : listJSX}
     </div>
 }
 export default NewsList;

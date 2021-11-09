@@ -3,7 +3,7 @@ import './App.css';
 import Header from '../Header/Header';
 
 import Copyright from 'components/Copyright';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import NewsList from '../NewsList/NewsList';
 import NewsPage from '../newsSelected/NewsPage';
 import useWindow from 'hooks/useWindow';
@@ -14,7 +14,7 @@ function App() {
   
   return <div className="App">
     <Routes>
-      <Route path={"/:city/:newsId"} element={
+      <Route path={"/:city/:lat/:lng/:newsId"} element={
         !isMobile ?
           <>
             <Header />
@@ -25,7 +25,7 @@ function App() {
             <NewsPage />
           </>
       } />
-      <Route path={"/:city/"} element={
+      <Route path={"/:city/:lat/:lng"} element={
         <>
           <Header />
           <NewsList />
@@ -38,6 +38,7 @@ function App() {
           <Copyright />
         </>
       } />
+      <Route path={"*"} element={<Navigate to = "/"/> }/>
     </Routes>
   </div>;
 }
