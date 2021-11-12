@@ -11,24 +11,24 @@ interface NewsCardProps{
 
 const NewsCard: React.FC<NewsCardProps> = ({ news }) => {
     
-    const { city } = useParams();
+    const { city, lat, lng } = useParams();
     const navigate = useNavigate();
 
     // if description is to long, cut it
-    let description = news.description;
-    if (description.length > 200) {
-        description = description.substring(0, 200) + '...';
+    let title = news.title;
+    if (title.length > 100) {
+        title = title.substring(0, 100) + '...';
     }
 
     const onClickHandler = () => {
-        navigate("/" + city + "/" + news.id, { replace: false });
+        navigate("/" + city + "/" + lat + "/" + lng + "/" + news.title, { replace: false });
     }
 
     return <Card className={classes.Card} onClick = {onClickHandler} style = {{backgroundColor: 'var(--color2)', color: 'var(--text)'}}>
-        <img src={news.urlToImage} alt="news" style={{ width: '100%', height: '10rem', backgroundColor: 'gray'}}/>
+        <img src={news.urlToImage} alt="news" style={{ width: '100%', height: '8rem', backgroundColor: 'gray'}}/>
         <CardContent>
-            <Typography variant = "h4">
-                {news.title}
+            <Typography variant = "body1">
+                {title}
             </Typography>
         </CardContent>
     </Card>

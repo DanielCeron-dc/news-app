@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import ICityInfo from './ICityInfo';
-import {cityInfoContext, exampleCityInfo} from './cityInfoContext';
+import React, {  useState } from 'react';
+import ICityInfo, { ICurrentWheather } from './ICityInfo';
+import {cityInfoContext, initialCityInfo} from './cityInfoContext';
+
 
 export const CityInfoProvider: React.FC = ({ children }) => {
-    const [cityInfo, setCityInfo] = useState(exampleCityInfo);
     const [loading, setLoading] = useState(true);
+    const [cityInfo, setCityInfo] = useState<ICityInfo>(initialCityInfo);
     const [error, setError] = useState<string | null>(null);
 
-    const fetchCityInfoFromBackend = async():Promise<ICityInfo> => {
+    const fetchCityInfoFromBackend = async(prmCity: string | undefined):Promise<void> => {
         setLoading(true);
+        if (!prmCity || prmCity === "undefined") return;
+
         try {
             const response = await fetch(
-                "https://newsapi.org/v2/top-headlines?country=us&apiKey=c9e0f0b8d9f14a1a8c6ea5d6b8a6a8f6"
+                process.env.REACT_APP_API + prmCity,
+                {
+                    method: "GET",
+                }
             );
             const data = await response.json();
+            const wheatherInfo:ICurrentWheather = {temperature: data.currentWeather.temperature,  wheatherDescription: data.currentWeather["weather_descriptions"]};
+            setCityInfo({ news: data.news, currentWheather: wheatherInfo });
             setLoading(false);
-            return data.articles;
         } catch (error: any) {
             setError(error);
             setLoading(false);
-            return {} as ICityInfo;
         }
     };
-
-    useEffect(() => {
-        //fetchNews();
-    }, []);
 
     return (
         <cityInfoContext.Provider
             value={{
                 cityInfo,
-                setCityInfo,
+                fetchInfoFromBackend: fetchCityInfoFromBackend,
                 loading,
                 setLoading,
                 error,

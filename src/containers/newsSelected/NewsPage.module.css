@@ -13,8 +13,8 @@
 @media screen and (min-width: 700px) {
     .base {
         min-height: 100vh;
-        height: 100%;
         width: 70vw;
+        max-width: 40rem;
         margin: 10rem 0 2rem 0;
     }
 }
@@ -29,3 +29,19 @@
     right: 0;
     margin: 1rem;
 }
+
+.card {
+    background-color: var(--color2);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    margin: 3rem 1rem; 
+    max-width: 35rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 1rem;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+

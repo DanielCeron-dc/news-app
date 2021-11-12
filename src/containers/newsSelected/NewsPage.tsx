@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Button, Card, CardContent, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 import useWindow from 'hooks/useWindow';
 import classes from './NewsPage.module.css'; 
@@ -48,27 +48,36 @@ const NewsId:React.FC = () => {
         }
     }, [newsId, isMobile]);
 
-    return <Card className={classes.base} style ={{backgroundColor:'var(--color2)', color: 'var(--text)'}}>
-        {isMobile && <Button
-            onClick={() => navigate('/')}
-            variant="contained"
-            style={{ position: 'fixed', bottom: '0', right: '0', margin: '1rem' }}
-        >
-            Back
+    return <div style ={{backgroundColor:'var(--color2)', color: 'var(--text)'}} className = {classes.card}>
+            {isMobile && <Button
+                onClick={() => navigate('/')}
+                variant="contained"
+                style={{ position: 'fixed', bottom: '0', right: '0', margin: '1rem' }}
+            >
+                Back
             </Button>
         }
-        <CardContent>
-            {newSelected ? <>
-                <Typography variant = "h3">
-                        {newsId}
-                </Typography>
-                <img src={newSelected.urlToImage} alt={newSelected.title} style={{height:'20rem', width: '100%', backgroundColor: "mediumseagreen"}}/>
-                <Typography variant="subtitle1">
-                    {newSelected.description}
-                </Typography>
-            </> : <Loader />
-            }
-        </CardContent>
-    </Card>
+
+        {newSelected ? <>
+            <img src={newSelected.urlToImage} alt={newSelected.title} style={{height:'20rem', width: '100%', backgroundColor: "mediumseagreen"}}/>
+            <Typography variant = "h4" className = {classes.title}>
+                    {newsId}
+            </Typography>
+            <Typography variant="caption">
+                Author: {newSelected.author}
+            </Typography>
+            <Typography variant="body1">
+                {newSelected.description}
+            </Typography>
+            <Typography variant="body1">
+                {newSelected.content}
+            </Typography>
+            <Typography variant="body1">
+                {new Date(newSelected.publishedAt).toLocaleDateString("en-US")}
+            </Typography>
+        </> : <Loader />
+        }
+       
+    </div>
 }
 export default NewsId;

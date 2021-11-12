@@ -1,11 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 
 const useWindow = (): { isMobile: boolean, isTablet: boolean, isDesktop: boolean } => {
 
     const [isMobile, setIsMobile] = useState(true);
     const [isTablet, setIsTablet] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
-
 
     const handleResize = useCallback(() => {
         if (window.innerWidth <= 768) {
@@ -25,7 +24,7 @@ const useWindow = (): { isMobile: boolean, isTablet: boolean, isDesktop: boolean
         }
     }, []); 
 
-    React.useEffect(() => {
+    useEffect(() => {
         handleResize();
         window.addEventListener('resize', handleResize);
         return () => {

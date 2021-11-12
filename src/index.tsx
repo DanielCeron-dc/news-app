@@ -10,11 +10,11 @@ import {CityInfoProvider } from 'store/news/CityInfoProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CityInfoProvider>
-        <Router>
+    <Router>
+      <CityInfoProvider>
           <App/>
-        </Router>
-    </CityInfoProvider>
+      </CityInfoProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -43,7 +43,7 @@ const Header: React.FC = () => {
     }, []);
 
     return <div className={`${classes.Header}  ${isSmall ? classes.small : ''}  ${!city ? classes.onWelcome : ''}`}>
-        {!city ?
+        {!city || !wheather ?
             <Welcome />
             :
             <>
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
                         {city ? city : 'Москва'}
                     </Typography>
                     <Typography variant="h4" className={classes.wheather}>
-                        <CloudSharp /> {wheather.temperature} {wheather.wheatherDescription[0]}
+                        <CloudSharp /> {wheather.temperature}° {wheather.wheatherDescription[0]}
                     </Typography>
                     <DarkModeSwitch />
                     <div className ={classes.spacer}></div>

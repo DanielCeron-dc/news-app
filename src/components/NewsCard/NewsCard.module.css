@@ -26,6 +26,7 @@
         margin: 10px 2rem;
         transition: 0.2s all ease-in-out;
         min-width: 16rem;
+        max-height: 16rem;
     }
     .Card__content {
         width: 50vw;
