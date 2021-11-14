@@ -5,6 +5,7 @@
   min-height: 100vh;
   height: 100%;
   align-items: center;
+  justify-content: space-around;
   overflow-x: hidden;
   background-color: var(--color1);
   color: var(--text);

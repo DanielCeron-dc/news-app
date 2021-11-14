@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router';
 import { CloudSharp } from '@mui/icons-material';
 import Typography from '@mui/material/Typography/Typography';
 
-import classes from './Header.module.css'; 
+import classes from './MainPanel.module.css'; 
 import Map from 'components/Map';
 import DarkModeSwitch from 'components/DarkModeSwitch';
 import Welcome from 'containers/Welcome/Welcome';
@@ -11,23 +11,15 @@ import SearchCity from 'components/SearchCity';
 import useCityInfo from 'store/news/useCityInfo';
 
 
-const Header: React.FC = () => {
+const MainPanel: React.FC = () => {
 
     const [isSmall, setIsSmall] = useState(false);
     const navigate = useNavigate();
     const { city } = useParams();
-    const {cityInfo } = useCityInfo(); 
-    
+    const { cityInfo } = useCityInfo(); 
+
     const wheather = cityInfo.currentWheather;
-
-
-    const handleOnScroll = () => {
-        if (window.scrollY > 500) {
-            setIsSmall(true);
-        }else { 
-            setIsSmall(false);
-        }
-    }
+    const handleOnScroll = () => window.scrollY > 500 ? setIsSmall(true) : setIsSmall(false);
 
     useEffect(() => {
         if (!city || city === 'undefined') {
@@ -42,8 +34,8 @@ const Header: React.FC = () => {
         }
     }, []);
 
-    return <div className={`${classes.Header}  ${isSmall ? classes.small : ''}  ${!city ? classes.onWelcome : ''}`}>
-        {!city || !wheather ?
+    return <div className={`${classes.MainPanel}  ${isSmall ? classes.small : ''}  ${!city ? classes.onWelcome : ''}`}>
+        {!city || !wheather ?  
             <Welcome />
             :
             <>
@@ -63,4 +55,4 @@ const Header: React.FC = () => {
         }
     </div>
 }
-export default Header;
+export default MainPanel;

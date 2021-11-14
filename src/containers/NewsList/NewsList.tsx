@@ -25,8 +25,6 @@ const NewsList: React.FC = () => {
         fetchInfoFromBackend(city);
     }, [city]);
 
-
-
     const autoScroll = useCallback(
         () => {
             if (!divRef.current) return;
@@ -43,7 +41,6 @@ const NewsList: React.FC = () => {
         interval = setInterval(autoScroll, 100);
         return () => clearInterval(interval);
     }, [autoScroll , isMobile]);
-
 
     const scroll = (cuantity: number) => {
         if (!divRef.current) return;

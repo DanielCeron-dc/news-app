@@ -1,11 +1,13 @@
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 import './App.css';
-import Header from '../Header/Header';
+import MainPanel from '../MainPanel/MainPanel';
 import useWindow from 'hooks/useWindow';
 import Copyright from 'components/Copyright';
 import NewsList from '../NewsList/NewsList';
 import NewsPage from '../newsSelected/NewsPage';
+
+import { ReactComponent as WaveSvg} from 'assets/svg/wave.svg';
 
 function App() { 
 
@@ -16,7 +18,7 @@ function App() {
       <Route path={"/:city/:lat/:lng/:newsId"} element={
         !isMobile ?
           <>
-            <Header />
+            <MainPanel />
             <NewsList />
             <NewsPage />
             <Copyright />
@@ -26,15 +28,16 @@ function App() {
       } />
       <Route path={"/:city/:lat/:lng"} element={
         <>
-          <Header />
+          <MainPanel />
           <NewsList />
           <Copyright />
         </>
       }/>
       <Route path={"/"} element={
         <>
-          <Header />
+          <MainPanel />
           <Copyright />
+          <WaveSvg style={{position:'fixed', bottom: 0, zIndex: 0}}/>
         </>
       } />
       <Route path={"*"} element={
