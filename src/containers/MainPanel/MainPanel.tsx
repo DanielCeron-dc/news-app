@@ -14,9 +14,9 @@ import useCityInfo from 'store/news/useCityInfo';
 const MainPanel: React.FC = () => {
 
     const [isSmall, setIsSmall] = useState(false);
-    const navigate = useNavigate();
     const { city } = useParams();
     const { cityInfo } = useCityInfo(); 
+    const navigate = useNavigate();
 
     const wheather = cityInfo.currentWheather;
     const handleOnScroll = () => window.scrollY > 500 ? setIsSmall(true) : setIsSmall(false);
@@ -44,7 +44,7 @@ const MainPanel: React.FC = () => {
                     <Typography variant="h3">
                         {city ? city : 'Москва'}
                     </Typography>
-                    <Typography variant="h4" className={classes.wheather}>
+                    <Typography variant="h4" className={classes.wheather} >
                         <CloudSharp /> {wheather.temperature}° {wheather.wheatherDescription[0]}
                     </Typography>
                     <DarkModeSwitch />

@@ -1,6 +1,7 @@
 .base {
     position: relative;
     width: 100%;
+    min-width: 15rem;
     overflow: hidden;
     margin: 10px 0;
 }

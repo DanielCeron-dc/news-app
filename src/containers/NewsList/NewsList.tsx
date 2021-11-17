@@ -57,11 +57,12 @@ const NewsList: React.FC = () => {
         </IconButton>}
         <div className={classes.list} ref={divRef}>
             {
-                news.length === 0 && <Typography variant="h5" className={classes.noNews}>
+                (news.length === 0) && <Typography variant="h5" className={classes.noNews}>
                     No news for this city 😕
                 </Typography>
             }
-            {news && news.map((item ) => <NewsCard
+            {news && news.map((item, index) => <NewsCard
+                key={item.title + index}
                 news = {item}
             />)}
         </div>
